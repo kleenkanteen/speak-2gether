@@ -3,9 +3,9 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom"
-import App from './app'
-import Create from './create'
-import Meeting from './meeting'
+import App from './App'
+import Create from './Create'
+import Meeting from './Meeting'
 import Join from './Join'
 import './index.css'
 
