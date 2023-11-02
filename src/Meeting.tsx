@@ -45,7 +45,7 @@ export default function Meeting() {
   async function getToken() {
     let name = localStorage.getItem("name");
     let room_id = localStorage.getItem("room_id");
-    const client = await new Ably.Realtime({ authUrl: "meeting-app-backend-production.up.railway.app", authMethod: "POST", authParams: { name: name, room_id: room_id}});
+    const client = await new Ably.Realtime({ authUrl: "meeting-app-backend-production.up.railway.app:3000", authMethod: "POST", authParams: { name: name, room_id: room_id}});
     await client.connection.once('connected');
     console.log('Connected to Ably!');
     console.log("Current room is", room_id);
