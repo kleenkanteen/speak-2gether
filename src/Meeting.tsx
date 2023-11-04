@@ -9,10 +9,14 @@ export default function Meeting() {
   const [ably, setAbly] = useState(null);
   const [channel, setChannel] = useState(null);
   const [order, setOrder] = useState(null);
+  const [newMessage, setNW] = useState(false);
 
   const navigate = useNavigate();
 
-  function updateOrder() {
+  useEffect(() => {
+    console.log("Updated message:", message);
+    console.log("Updated order: plse", order);
+    if (!message) return;
     if (!order) {
       console.log("Setting order to: ", [message]);
       setOrder(() => [message]);
@@ -25,13 +29,7 @@ export default function Meeting() {
     } else {
       setOrder((prev) => [...prev, message]);
     }
-  }
-
-  useEffect(() => {
-    console.log("Updated message:", message);
-    console.log("Updated order: plse", order);
-    if (!message) return;
-  }, [message])
+  }, [message, newMessage])
 
   useEffect(() => {
     getToken();
@@ -79,8 +77,10 @@ export default function Meeting() {
     const channel = await ably.channels.get(`${room_id}`);
     await channel.subscribe("meeting", (message) => {
       console.log('User event: ' + message.data);
-      updateMessage(() => message.data);
-      updateOrder();
+      updateMessage(message.data);
+      if (message.data == message) {
+        setNW((prev) => !prev);
+      }
     });
     setChannel(() => channel);
     console.log(channel);
