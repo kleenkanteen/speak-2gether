@@ -14,7 +14,7 @@ export default function Meeting() {
 
   useEffect(() => {
     console.log("Updated message:", message);
-    console.log("Updated order:", order);
+    console.log("Updated order: plse", order);
     if (!message) return;
     if (!order) {
       console.log("Setting order to: ", [message]);
