@@ -82,7 +82,8 @@ export default function Meeting() {
       updateMessage(() => message.data);
       updateOrder();
     });
-    updateMessage(() => message.data).then(() => updateOrder());
+    setChannel(() => channel);
+    console.log(channel);
   }
 
   function talkTrigger() {
