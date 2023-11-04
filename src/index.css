@@ -94,7 +94,8 @@ button:focus-visible {
 .happy {
   display: flex;
   flex-direction: column;
-  /* border: 1px solid red; */
+  min-width: 600px;
+  min-height: 600px;
   gap: 1em;
   justify-items: center;
   align-items: center;
