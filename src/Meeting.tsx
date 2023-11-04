@@ -15,6 +15,7 @@ export default function Meeting() {
   useEffect(() => {
     if (!message) return;
     if (!order) {
+      console.log("Setting order to: ", [message]);
       setOrder(() => [message]);
     }
     else if (message === order[0] && order.length === 1) {
