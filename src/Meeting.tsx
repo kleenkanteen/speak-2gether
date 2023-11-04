@@ -5,6 +5,7 @@ import './index.css'
 import { useNavigate } from "react-router-dom";
 
 export default function Meeting() {
+  let name = localStorage.getItem("name");
   const [messages, updateMessages] = useState("");
   const [ably, setAbly] = useState(null);
   const [channel, setChannel] = useState(null);
@@ -72,7 +73,7 @@ export default function Meeting() {
         <p>{"Room ID: " + localStorage.getItem("room_id")}</p>
 
         <div className='happy'>
-        <button onClick={() => channel.publish("meeting", localStorage.getItem("name"))}>Queue in</button>
+        <button onClick={() => channel.publish("meeting", localStorage.getItem("name"))}>{order && (messages === order[0]) ? <p>Queue in</p> : <p>Stop talking</p>}</button>
           { order && (
             order[0] === localStorage.getItem("name") ? <div className="go"></div> : <div className="stop"></div>
           )}
