@@ -6,7 +6,7 @@ export default function Create() {
 
     async function createRoom() {
         try {
-          let response = await fetch("http://localhost:3000/create-room");
+          let response = await fetch("https://meeting-backend-vercel.vercel.app/create-room");
           if (!response.ok) {
             throw new Error("error creating room");
           }
