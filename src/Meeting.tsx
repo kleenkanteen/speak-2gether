@@ -30,7 +30,14 @@ export default function Meeting() {
 
   useEffect(() => {
     getToken();
+  }, [])
 
+  useEffect(() => {
+    if (ably) getChannel();
+  }, [ably])
+
+  useEffect(() => {
+    if (channel) {
     const handleEscapeKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         talkTrigger();
@@ -42,16 +49,9 @@ export default function Meeting() {
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
-  }, [])
-
-  useEffect(() => {
-    console.log("Updated order:", order);
-  }, [order]);
-
-
-  useEffect(() => {
-    if (ably) getChannel();
-  }, [ably])
+  }
+  }, [channel])
+  
 
 
   async function getToken() {
@@ -92,6 +92,7 @@ export default function Meeting() {
       <div><button onClick={() => navigate('/')}>Go home</button></div>
         <p>{"Name: " + localStorage.getItem("name")}      </p>
         <p>{"Room ID: " + localStorage.getItem("room_id")}</p>
+        <p>Press escape to queue in or press button below:</p>
 
         <div className='happy'>
         <button onClick={talkTrigger}> 
