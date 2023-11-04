@@ -79,7 +79,7 @@ export default function Meeting() {
     const channel = await ably.channels.get(`${room_id}`);
     await channel.subscribe("meeting", (message) => {
       console.log('User event: ' + message.data);
-      updateMessage(message.data);
+      updateMessage(() => message.data);
       updateOrder();
     });
     setChannel(() => channel);
