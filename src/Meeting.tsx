@@ -88,7 +88,7 @@ export default function Meeting() {
 
         <div className='happy'>
         <button onClick={talkTrigger}> 
-          {!order || order && (localStorage.getItem("name") === order[0]) ? 
+          {!order || (order && (localStorage.getItem("name") !== order[0])) ? 
             <p>Queue in</p> : 
             <p>Stop talking</p>}
         </button>
