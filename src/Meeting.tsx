@@ -17,6 +17,9 @@ export default function Meeting() {
     if (!order) {
       setOrder(() => [message]);
     }
+    else if (message === order[0] && order.length === 1) {
+      setOrder(() => []);
+    }
     else if (message === order[0]) {
       setOrder((prev) => prev.slice(1));
     } else {
