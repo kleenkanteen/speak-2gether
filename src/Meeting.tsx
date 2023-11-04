@@ -18,7 +18,7 @@ export default function Meeting() {
       console.log("Setting order to: ", [message]);
       setOrder(() => [message]);
     }
-    else if (message === localStorage.getItem("name") && order.length === 1) {
+    else if (message === order[0] && order.length === 1) {
       setOrder(() => []);
     }
     else if (message === order[0]) {
