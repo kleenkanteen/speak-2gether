@@ -96,7 +96,7 @@ export default function Meeting() {
             order[0] === localStorage.getItem("name") ? <div className="go"></div> : <div className="stop"></div>
           )}
 
-          { order.map(ele => <p>Next up: {ele}</p>) }
+          { order && order.map(ele => <p>Next up: {ele}</p>) }
         </div>
     </div>
   )
