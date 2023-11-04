@@ -92,7 +92,7 @@ export default function Meeting() {
       <div><button onClick={() => navigate('/')}>Go home</button></div>
         <p>{"Name: " + localStorage.getItem("name")}      </p>
         <p>{"Room ID: " + localStorage.getItem("room_id")}</p>
-        <p>Press escape to queue in or press button below:</p>
+        <b>Press escape or button below:</b>
 
         <div className='happy'>
         <button onClick={talkTrigger}> 
