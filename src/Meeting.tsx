@@ -1,11 +1,10 @@
 import * as Ably from 'ably';
 import { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import './App.css';
-import './index.css';
+import './index.css'
+import { useNavigate } from "react-router-dom";
 
 export default function Meeting() {
-  const [message, setMessage] = useState("");
   const [messages, updateMessages] = useState("");
   const [ably, setAbly] = useState(null);
   const [channel, setChannel] = useState(null);
@@ -45,7 +44,7 @@ export default function Meeting() {
   async function getToken() {
     let name = localStorage.getItem("name");
     let room_id = localStorage.getItem("room_id");
-    const client = await new Ably.Realtime({ authUrl: "meeting-app-backend-production.up.railway.app:3000", authMethod: "POST", authParams: { name: name, room_id: room_id}});
+    const client = await new Ably.Realtime({ authUrl: "https://meeting-backend-vercel.vercel.app/auth", authMethod: "POST", authParams: { name: name, room_id: room_id}});
     await client.connection.once('connected');
     console.log('Connected to Ably!');
     console.log("Current room is", room_id);
@@ -71,7 +70,6 @@ export default function Meeting() {
       <div><button onClick={() => navigate('/')}>Go home</button></div>
         <p>{"Name: " + localStorage.getItem("name")}      </p>
         <p>{"Room ID: " + localStorage.getItem("room_id")}</p>
-        <p>{message}</p>
 
         <div className='happy'>
         <button onClick={() => channel.publish("meeting", localStorage.getItem("name"))}>Queue in</button>
