@@ -13,6 +13,8 @@ export default function Meeting() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("Updated message:", message);
+    console.log("Updated order:", order);
     if (!message) return;
     if (!order) {
       console.log("Setting order to: ", [message]);
