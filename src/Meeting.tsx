@@ -14,11 +14,8 @@ export default function Meeting() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("Updated message:", message);
-    console.log("Updated order: plse", order);
     if (!message) return;
     if (!order) {
-      console.log("Setting order to: ", [message]);
       setOrder(() => [message]);
     }
     else if (message === order[0] && order.length === 1) {
@@ -55,9 +52,6 @@ export default function Meeting() {
   useEffect(() => {
     if (ably) getChannel();
   }, [ably])
-
-  // invoke('greet', { name: 'World' }).then((response) => console.log(response));
-  // (async () => await appWindow.setAlwaysOnTop(true))();
 
 
   async function getToken() {
@@ -108,8 +102,6 @@ export default function Meeting() {
           { order && (
             order[0] === localStorage.getItem("name") ? <div className="go"></div> : <div className="stop"></div>
           )}
-
-          { order && order.map(ele => <p>Next up: {ele}</p>) }
         </div>
     </div>
   )
