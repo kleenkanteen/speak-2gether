@@ -75,10 +75,11 @@ export default function Meeting() {
     let room_id = localStorage.getItem("room_id");
     console.dir(ably.channels.all)
     const channel = await ably.channels.get(`${room_id}`);
-    await channel.subscribe("meeting", (message) => {
-      console.log('User event: ' + message.data);
-      updateMessage(() => message.data);
-      if (message.data == message) {
+    await channel.subscribe("meeting", (msg) => {
+      console.log('User event: ' + msg.data);
+      updateMessage(() => msg.data);
+      if (msg.data == message) {
+        console.log("Same user lcicked");
         setNW((prev) => !prev);
       }
     });
