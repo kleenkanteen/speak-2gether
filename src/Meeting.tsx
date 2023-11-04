@@ -1,8 +1,8 @@
 import * as Ably from 'ably';
 import { useEffect, useState } from 'react';
-import './App.css';
-import './index.css'
 import { useNavigate } from "react-router-dom";
+import './App.css';
+import './index.css';
 
 export default function Meeting() {
   const [messages, updateMessages] = useState("");
@@ -87,10 +87,16 @@ export default function Meeting() {
         <p>{"Room ID: " + localStorage.getItem("room_id")}</p>
 
         <div className='happy'>
-        <button onClick={talkTrigger}>{order && (localStorage.getItem("name") === order[0]) ? <p>Queue in</p> : <p>Stop talking</p>}</button>
+        <button onClick={talkTrigger}> 
+          {!order || order && (localStorage.getItem("name") === order[0]) ? 
+            <p>Queue in</p> : 
+            <p>Stop talking</p>}
+        </button>
           { order && (
             order[0] === localStorage.getItem("name") ? <div className="go"></div> : <div className="stop"></div>
           )}
+
+          { order.map(ele => <p>Next up: {ele}</p>) }
         </div>
     </div>
   )
