@@ -12,10 +12,7 @@ export default function Meeting() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("Updated message:", message);
-    console.log("Updated order: plse", order);
-    if (!message) return;
+  function updateOrder() {
     if (!order) {
       console.log("Setting order to: ", [message]);
       setOrder(() => [message]);
@@ -28,6 +25,12 @@ export default function Meeting() {
     } else {
       setOrder((prev) => [...prev, message]);
     }
+  }
+
+  useEffect(() => {
+    console.log("Updated message:", message);
+    console.log("Updated order: plse", order);
+    if (!message) return;
   }, [message])
 
   useEffect(() => {
@@ -77,6 +80,7 @@ export default function Meeting() {
     await channel.subscribe("meeting", (message) => {
       console.log('User event: ' + message.data);
       updateMessage(message.data);
+      updateOrder();
     });
     setChannel(() => channel);
     console.log(channel);
