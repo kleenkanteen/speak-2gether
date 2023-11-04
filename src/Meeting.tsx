@@ -27,11 +27,11 @@ export default function Meeting() {
     }
   }
 
-  useEffect(() => {
-    console.log("Updated message:", message);
-    console.log("Updated order: plse", order);
-    if (!message) return;
-  }, [message])
+  // useEffect(() => {
+  //   console.log("Updated message:", message);
+  //   console.log("Updated order: plse", order);
+  //   if (!message) return;
+  // }, [message])
 
   useEffect(() => {
     getToken();
@@ -82,8 +82,7 @@ export default function Meeting() {
       updateMessage(() => message.data);
       updateOrder();
     });
-    setChannel(() => channel);
-    console.log(channel);
+    updateMessage(() => message.data).then(() => updateOrder());
   }
 
   function talkTrigger() {
